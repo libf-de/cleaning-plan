@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  cleaning-scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cleaning-scheduler:latest
+    container_name: cleaning-scheduler
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin  # Set appropriate timezone
+    volumes:
+      - ./logs:/app/logs
+    network_mode: "host"  # Use host networking to access LAN printer
